@@ -125,6 +125,16 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="JPG\297094.jpg" />
+    <Content Include="JPG\304333.jpg" />
+    <Content Include="JPG\305896 %281%29.jpg" />
+    <Content Include="JPG\305896.jpg" />
+    <Content Include="JPG\312091.png" />
+    <Content Include="JPG\462552.jpg" />
+    <Content Include="JPG\481904.jpg" />
+    <Content Include="JPG\519728.jpg" />
+    <Content Include="JPG\661986.jpg" />
+    <Content Include="JPG\686182.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

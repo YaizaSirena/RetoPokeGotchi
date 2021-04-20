@@ -13,10 +13,28 @@
 			
 			<title>Pokedotchi:Principal</title>
 		</head>
-<body>
+<body style="background-image: url('https://localhost:44331/JPG/519728.jpg')">
     <form id="form1" runat="server">
-        <div>
-        </div>
+        <div class="container"> 
+			<br /><br /><br /><br />
+			<div class="row">
+				<div class="col-md-3 offset-md-5">
+                    <asp:TextBox ID="textNombre" runat="server"></asp:TextBox>
+				</div>
+			</div>
+			<br />
+			<div class="row">
+				<div class="col-md-6 offset-md-5" >
+                    <asp:Button ID="butCargarPartida" runat="server" Text="Cargar Partida" CssClass="btn-light focus" />
+				</div>
+			</div>
+			<br />
+			<div class="row">
+				<div class="col-md-5 offset-md-5"  >
+                 <asp:Button ID="butNuevaPartida" runat="server" Text="Nueva Partida" CssClass="btn-light focus" />
+				</div>
+			</div>
+		</div>
     </form>
 </body>
 </html>
