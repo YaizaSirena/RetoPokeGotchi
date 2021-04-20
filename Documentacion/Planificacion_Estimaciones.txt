@@ -1,0 +1,25 @@
+
+Noche 1: (19/04/2021) 
+	1.	Crear BBDD
+			
+			1. tabla usuario
+				id 
+				nombre usuario (unique key)
+			
+			2. pokegotchi
+				idpokedodgi
+				pokemon id
+				usuarioId
+			
+			3. pokemon
+				id
+				nombre
+				tipo
+				estado salud
+
+	2.	Crear proyecto en VisualStudio
+			Crear objetos de las tablas
+
+TIEMPO ESTIMADO: 1h
+TIEMPO REAL: 52mins
+
