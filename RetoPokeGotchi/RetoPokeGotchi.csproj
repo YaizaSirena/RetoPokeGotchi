@@ -186,6 +186,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DALPokegotchi.cs" />
+    <Compile Include="Models\DBConnect.cs" />
     <Compile Include="Models\Pokegotchi.cs" />
     <Compile Include="Models\Pokemon.cs" />
     <Compile Include="Models\Usuario.cs" />
@@ -214,6 +216,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
