@@ -29,25 +29,26 @@ namespace RetoPokeGotchi.Models
                 while (dr.Read())
                 {
                     usuarioExistente.NombreUsuario = nombreIntroducido;
+                    return usuarioExistente;
                 }
                 dr.Close();
             }
                 catch (Exception error)
                 {
-                    
+                     
                 }
-            return usuarioExistente;
+            return null;
         }
 
 
-        public void InsertarUsuario(Usuario usuario)
+        public void InsertarUsuario(String usuario)
         {
             try
             {
                 string sql = @"insert into Usuario (NombreUsuario)   values('@pNombreUsuario')";
                 SqlCommand cmd = new SqlCommand(sql, conexion.Conexion);
 
-                cmd.Parameters.Add(CrearParametro("@pNombreUsuario", System.Data.SqlDbType.VarChar, 15, usuario.NombreUsuario ));
+                cmd.Parameters.Add(CrearParametro("@pNombreUsuario", System.Data.SqlDbType.VarChar, 15, Convert.ToString(usuario) ));
 
                 cmd.ExecuteNonQuery();
             }

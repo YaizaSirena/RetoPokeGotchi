@@ -1,0 +1,68 @@
+
+Noche(19/04/2021) 
+	1.	Crear BBDD
+			
+			1. tabla usuario
+				id 
+				nombre usuario (unique key)
+			
+			2. pokegotchi
+				idpokedodgi
+				pokemon id
+				usuarioId
+			
+			3. pokemon
+				id
+				nombre
+				tipo
+				estado salud
+
+	2.	Crear proyecto en VisualStudio
+			Crear objetos de las tablas
+
+TIEMPO ESTIMADO: 1h
+TIEMPO REAL: 52mins
+
+
+DÍA (20/04/2021)
+
+	Crear inserts de prueba en DataBase
+	Crear DBConnect.
+	DAL pokemon.
+	DAL Usuario.
+	
+	Pantalla principal
+		TextArea(nombre) + 2 botones :
+			Cargar Partida --> select tabla de usuario si  (nombre == nombre introducido)
+			Nueva Partida --> select tabla de usuario (si existe alert ya existe). Si no insert nombre en tabla usuario.
+		En ambos casos si es correcto navega a la pagina pookedotchi.
+				
+TIEMPO ESTIMADO: 5h
+TIEMPO REAL:
+
+mandar a  recolectar. random 0-10 (baja felicidad)
+						random comer 0 -2 puntos felicidad
+						jugar 0-2 punto felicidad
+						
+					10 puntos evolucion al maximo
+
+
+
+
+
+Una vez entres a tu usuario tendrás
+	pokedex + campo de texto. pokemon. capturar. random 0-1 posibilidades de capturar.
+	lista de todos tus pokemons.
+		desplegable con los pokemons.
+			- Recolectar.			(random)
+			- Jugar.				(random)
+			- Darle de comer.		(random)
+			- entrenar.				(random subir nivel)
+	
+	un pokemon de cada tipo en máximo nivel.  = flag base de datos activo.
+							- 	Pokemon legendario
+	
+	
+	
+	
+	

@@ -25,13 +25,13 @@
 			<br />
 			<div class="row">
 				<div class="col-md-6 offset-md-5" >
-                    <asp:Button ID="butCargarPartida" runat="server" Text="Cargar Partida" CssClass="btn-light focus" />
+                    <asp:Button ID="butCargarPartida" runat="server" Text="Cargar Partida" CssClass="btn-light focus" OnClick="butCargarPartida_Click" />
 				</div>
 			</div>
 			<br />
 			<div class="row">
 				<div class="col-md-5 offset-md-5"  >
-                 <asp:Button ID="butNuevaPartida" runat="server" Text="Nueva Partida" CssClass="btn-light focus" />
+                 <asp:Button ID="butNuevaPartida" runat="server" Text="Nueva Partida" CssClass="btn-light focus" OnClick="butNuevaPartida_Click" />
 				</div>
 			</div>
 		</div>
