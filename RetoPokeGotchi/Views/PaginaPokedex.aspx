@@ -11,9 +11,9 @@
 				<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
 				<script src="https://kit.fontawesome.com/a385db07c8.js"></script>
 			
-			<title>Pokedotchi:Pokédex</title>
+			<title>Pokegotchi:Pokédex</title>
 </head>
-<body>
+<body style="background-image: url('https://localhost:44331/JPG/wp3170165.jpg')">
     <form id="form1" runat="server">
         <div>
         </div>
