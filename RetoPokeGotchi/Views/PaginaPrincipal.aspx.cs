@@ -17,12 +17,13 @@ namespace RetoPokeGotchi.Views
 
         protected void butCargarPartida_Click(object sender, EventArgs e)
         {
+            
             DALPokegotchi daLPokegotchi = new DALPokegotchi();
             try
             {
                 if (daLPokegotchi.SelectUsuario(textNombre.Text) != null)
                 {
-                    Response.Redirect("Pokedex.aspx");
+                    Response.Redirect("PaginaPokedex.aspx");
                 }
                 else
                 {
@@ -39,7 +40,7 @@ namespace RetoPokeGotchi.Views
             if(daLPokegotchi.SelectUsuario(textNombre.Text) == null && textNombre.Text != "")
             {
                 daLPokegotchi.InsertarUsuario(textNombre.Text);
-                Response.Redirect("Pokedex.aspx");
+                Response.Redirect("PaginaPokedex.aspx");
             }
             else
             {

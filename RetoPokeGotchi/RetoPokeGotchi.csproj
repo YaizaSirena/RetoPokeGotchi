@@ -130,11 +130,14 @@
     <Content Include="JPG\305896 %281%29.jpg" />
     <Content Include="JPG\305896.jpg" />
     <Content Include="JPG\312091.png" />
+    <Content Include="JPG\43499.jpg" />
     <Content Include="JPG\462552.jpg" />
     <Content Include="JPG\481904.jpg" />
     <Content Include="JPG\519728.jpg" />
     <Content Include="JPG\661986.jpg" />
     <Content Include="JPG\686182.jpg" />
+    <Content Include="JPG\90YwkKS-pokeball-wallpaper.jpg" />
+    <Content Include="JPG\VvoxTdT-pokeball-wallpaper.jpg" />
     <Content Include="JPG\wp3170165.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -166,8 +169,8 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
+    <Content Include="Views\PaginaPokedex.aspx" />
     <Content Include="Views\PaginaPrincipal.aspx" />
-    <Content Include="Views\Pokedex.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
@@ -226,19 +229,19 @@
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Views\PaginaPokedex.aspx.cs">
+      <DependentUpon>PaginaPokedex.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\PaginaPokedex.aspx.designer.cs">
+      <DependentUpon>PaginaPokedex.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\PaginaPrincipal.aspx.cs">
       <DependentUpon>PaginaPrincipal.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\PaginaPrincipal.aspx.designer.cs">
       <DependentUpon>PaginaPrincipal.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Pokedex.aspx.cs">
-      <DependentUpon>Pokedex.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Pokedex.aspx.designer.cs">
-      <DependentUpon>Pokedex.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

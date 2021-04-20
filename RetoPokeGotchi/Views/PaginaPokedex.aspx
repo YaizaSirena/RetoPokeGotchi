@@ -13,7 +13,7 @@
 			
 			<title>Pokegotchi:Pokédex</title>
 </head>
-<body style="background-image: url('https://localhost:44331/JPG/wp3170165.jpg')">
+<body style="background-image: url('https://localhost:44331/JPG/686182.jpg'); vertical-align: inherit; background-repeat: repeat-x;">
     <form id="form1" runat="server">
         <div>
         </div>
