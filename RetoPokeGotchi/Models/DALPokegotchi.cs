@@ -15,20 +15,20 @@ namespace RetoPokeGotchi.Models
             conexion = new DBConnect();
         }
 
-        public Usuario SelectUsuario(string nombreIntroducido)
+        public Usuario SelectUsuario(string nombreUsuario)
         {
             Usuario usuarioExistente = new Usuario();
             try
             {
                 string sql = @"select NombreUsuario from Usuario where NombreUsuario = @pNombreUsuario";
                 SqlCommand cmd = new SqlCommand(sql, conexion.Conexion);
-                SqlParameter pNombreUsuario = new SqlParameter("@pNombreUsuario", nombreIntroducido);
+                SqlParameter pNombreUsuario = new SqlParameter("@pNombreUsuario", nombreUsuario);
                 cmd.Parameters.Add(pNombreUsuario);
 
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
-                    usuarioExistente.NombreUsuario = nombreIntroducido;
+                    usuarioExistente.NombreUsuario = nombreUsuario;
                     return usuarioExistente;
                 }
                 dr.Close();
@@ -39,7 +39,6 @@ namespace RetoPokeGotchi.Models
                 }
             return null;
         }
-
 
         public void InsertarUsuario(String usuario)
         {
@@ -58,13 +57,41 @@ namespace RetoPokeGotchi.Models
             }
         }
 
-
         public SqlParameter CrearParametro(string pName, System.Data.SqlDbType type, int size, object value)
         {
             SqlParameter param = new SqlParameter(pName, type, size);
             param.Value = value;
             return param;
         }
+
+        public int SelectIdUsuario(string nombreUsuario)
+        {
+            int idUsuario = 0;
+            try
+            {
+                string sql = @"Select id from Usuario where NombreUsuario = @pNombreUsuario";
+                SqlCommand cmd = new SqlCommand(sql, conexion.Conexion);
+                SqlParameter pNombreUsuario = new SqlParameter("@pNombreUsuario", nombreUsuario);
+                cmd.Parameters.Add(pNombreUsuario);
+
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    idUsuario = (int)dr["id"];
+                }
+                dr.Close();
+            }
+            catch (Exception error) { }
+            return idUsuario;
+        }
+
+
+        public List<Pokemon> MostrarPokemons(int idUsuario)
+        {
+            List<Pokemon> pokemons = new List<Pokemon>();
+
+        }
+
 
     }
 }
