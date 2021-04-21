@@ -21,8 +21,8 @@ NOCHE(19/04/2021)
 				Crear objetos de las tablas
 
 	TIEMPO ESTIMADO: 1h
-	TIEMPO REAL: 52mins
-
+	TIEMPO REAL: 56 mins 
+																							TIEMPO TOTAL ACUMULADO:		56'
 
 DÍA (20/04/2021)
 		Crear inserts de prueba en DataBase
@@ -38,16 +38,23 @@ DÍA (20/04/2021)
 				Pantalla pokédex vacía
 	TIEMPO ESTIMADO: 5h
 	TIEMPO REAL: 4h
-
+																							TIEMPO TOTAL ACUMULADO:		4h56'
 
 NOCHE (20/04/2021)
 		Recuperar ID y guardarla en Session.
-		Recuperar pokemons por ID del usuario. 
-		Pantalla pokédex mostrando los pokémons del usuario. 
+		Arreglar bugs.
 	TIEMPO ESTIMADO:  
-	TIEMPO REAL : + 2.45h
+	TIEMPO REAL : + 3h
+																							TIEMPO REAL ACUMULADO: 		7h56' 
 
-
+(21/04/2021)
+		Sustituir mensaje en textArea por Alerts. (hecho, muestra id)
+		Recuperar pokemons por ID del usuario. (hecho)
+		Insertar pokemons a petición del usuario.			
+		Pantalla pokédex mostrando los pokémons del usuario. (hecho. muestra id)
+TIEMPO ESTIMADO: 3H
+TIEMPO REAL:1h35' +
+																							TIEMPO TOTAL ACUMULADO:		
 
 
 IDEA FUNCIONAMIENTO:
