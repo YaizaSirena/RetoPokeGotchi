@@ -15,11 +15,18 @@ namespace RetoPokeGotchi.Views
             Convert.ToInt32(Session["userId"]);
             DALPokegotchi daLPokegotchi = new DALPokegotchi();
 
-            List<int> idPokemons = daLPokegotchi.selectIdPokemons(Convert.ToInt32(Session["userId"]));
-            foreach (int id in idPokemons)
+            List<Pokemon> listaPokemons = daLPokegotchi.MostrarPokemons(Convert.ToInt32(Session["userId"]));
+            foreach (Pokemon pokemon in listaPokemons)
             {
-                listPokemons.Items.Add(Convert.ToString(id));
+                listPokemons.Items.Add(pokemon.NombrePokemon);
             }
+
+
+            //List<int> idPokemons = daLPokegotchi.SelectIdPokemons(Convert.ToInt32(Session["userId"]));
+            //foreach (int id in idPokemons)
+            //{
+            //    listPokemons.Items.Add(Convert.ToString(id));
+            //}
         }
     }
 }

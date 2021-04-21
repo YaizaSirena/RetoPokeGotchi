@@ -75,7 +75,7 @@ namespace RetoPokeGotchi.Models
             
             return idUsuario;
         }
-        public List<int> selectIdPokemons(int idUsuario)
+        public List<int> SelectIdPokemons(int idUsuario)
         {
             List<int> listaIdPokegotchi = new List<int>();
             List<Pokemon> listaIdPokemons = new List<Pokemon>();
@@ -97,11 +97,33 @@ namespace RetoPokeGotchi.Models
             return listaIdPokegotchi;
         }
 
+        public List<Pokemon> MostrarPokemons(int idUsuario)
+        {
+            List<Pokemon> listaPokemons = new List<Pokemon>();
 
-        //select del POKEMON
-        //select p.NombrePokemon, 'tipo '+ p.Tipo  from Pokemon p 
-       // INNER JOIN Pokegotchi as l
-        //on p.id = l.idPokemon and idUsuario = 3
+            try
+            {
+                string sql = @" select p.NombrePokemon,  p.Tipo  from Pokemon p INNER JOIN Pokegotchi as l
+                                 on p.id = l.idPokemon and idUsuario = @pIdUsuario";
+                SqlCommand cmd = new SqlCommand(sql, conexion.Conexion);
+                SqlParameter pIdUsuario = new SqlParameter("@pIdUsuario", idUsuario);
+                cmd.Parameters.Add(pIdUsuario);
+
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    Pokemon pokemon = new Pokemon();
+                    pokemon.NombrePokemon = (string)dr["NombrePokemon"];
+                    pokemon.Tipo = (string)dr["Tipo"];
+                    listaPokemons.Add(pokemon);
+                }
+                dr.Close();
+
+            }
+            catch (Exception error) { }
+            return listaPokemons;
+        }
+
 
 
 
