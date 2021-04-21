@@ -60,6 +60,15 @@ namespace RetoPokeGotchi.Views
         protected global::System.Web.UI.WebControls.Button butCapturar;
 
         /// <summary>
+        /// Control labelPokedex.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labelPokedex;
+
+        /// <summary>
         /// Control listPokemons.
         /// </summary>
         /// <remarks>

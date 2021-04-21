@@ -38,12 +38,17 @@
 						</div>
 					</div><br />
 	
+				   <div class="row">
+						<div class="col-md-5 offset-md-4"  >
+                            <asp:Label ID="labelPokedex" runat="server" Text="Éstos son tus Pokémons" BorderStyle="Outset" ForeColor="#660066" BackColor="White"></asp:Label> 
+						</div>
+					</div>
+				   <br />
 					<div class="row">
 						<div class="col-md-5 offset-md-4"  >
                             <asp:ListBox ID="listPokemons" runat="server" Width="231px"></asp:ListBox>
 						</div>
 					</div>
-
 				</div>
 		    
 		</form>

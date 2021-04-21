@@ -98,6 +98,15 @@ namespace RetoPokeGotchi.Models
         }
 
 
+        //select del POKEMON
+        //select p.NombrePokemon, 'tipo '+ p.Tipo  from Pokemon p 
+       // INNER JOIN Pokegotchi as l
+        //on p.id = l.idPokemon and idUsuario = 3
+
+
+
+
+
     }
 }
 
