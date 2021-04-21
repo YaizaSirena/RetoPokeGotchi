@@ -13,10 +13,39 @@
 			
 			<title>Pokegotchi:Pokédex</title>
 </head>
-<body style="background-image: url('https://localhost:44331/JPG/686182.jpg'); vertical-align: inherit; background-repeat: repeat-x;">
-    <form id="form1" runat="server">
-        <div>
-        </div>
-    </form>
-</body>
+	<body style="background-image: url('https://localhost:44331/JPG/686182.jpg'); vertical-align: inherit; background-repeat: repeat-x;">
+    
+		<form id="form1" runat="server">
+			   <div class="container"> <br /><br /><br /><br />
+			
+
+				   <div class="row">
+						<div class="col-md-5 offset-md-4">
+							<asp:Label ID="labelBienvenida" runat="server" Text="Bienvenid@ a tu Pokédex" BorderStyle="Outset" ForeColor="#660066" BackColor="White"></asp:Label> 
+						</div>
+					</div><br />
+
+					<div class="row">
+						<div class="col-md-5 offset-md-4">
+							<asp:Label ID="labelPeticion" runat="server" Text="Escribe el nombre del Pokémon que quieras capturar" BorderStyle="Outset" ForeColor="#660066" BackColor="White"></asp:Label> 
+						</div>
+					</div><br />
+			
+					<div class="row">
+						<div class="col-md-6 offset-md-4" >
+							<asp:TextBox ID="butPokemon" runat="server"></asp:TextBox>
+                            <asp:Button ID="butCapturar" runat="server" Text="Capturar" />
+						</div>
+					</div><br />
+	
+					<div class="row">
+						<div class="col-md-5 offset-md-4"  >
+                            <asp:ListBox ID="listPokemons" runat="server" Width="231px"></asp:ListBox>
+						</div>
+					</div>
+
+				</div>
+		    
+		</form>
+	</body>
 </html>

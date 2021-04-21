@@ -12,7 +12,6 @@ namespace RetoPokeGotchi.Models
 
         public SqlConnection Conexion { get => conexion; set => conexion = value; }
 
-
         public DBConnect()
         {
             Conexion = new SqlConnection("Data Source =DESKTOP-GSHP0S4; Initial Catalog = RetoPokeGotchi; Integrated Security = true;");

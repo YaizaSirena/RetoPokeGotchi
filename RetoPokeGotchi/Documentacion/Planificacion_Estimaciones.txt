@@ -1,44 +1,59 @@
 
-Noche(19/04/2021) 
-	1.	Crear BBDD
-			
-			1. tabla usuario
-				id 
-				nombre usuario (unique key)
-			
-			2. pokegotchi
-				idpokedodgi
-				pokemon id
-				usuarioId
-			
-			3. pokemon
-				id
-				nombre
-				tipo
-				estado salud
+NOCHE(19/04/2021) 
+		1.	Crear BBDD
+				
+				1. tabla usuario
+					id 
+					nombre usuario (unique key)
+				
+				2. pokegotchi
+					idpokedodgi
+					pokemon id
+					usuarioId
+				
+				3. pokemon
+					id
+					nombre
+					tipo
+					estado salud
 
-	2.	Crear proyecto en VisualStudio
-			Crear objetos de las tablas
+		2.	Crear proyecto en VisualStudio
+				Crear objetos de las tablas
 
-TIEMPO ESTIMADO: 1h
-TIEMPO REAL: 52mins
+	TIEMPO ESTIMADO: 1h
+	TIEMPO REAL: 52mins
 
 
 DÍA (20/04/2021)
+		Crear inserts de prueba en DataBase
+		Crear DBConnect.
+		DAL pokemon.
+		DAL Usuario.
+		
+		Pantalla principal
+			TextArea(nombre) + 2 botones :
+				Cargar Partida --> select tabla de usuario si  (nombre == nombre introducido)
+				Nueva Partida --> select tabla de usuario (si existe alert ya existe). Si no insert nombre en tabla usuario.
+				En ambos casos si es correcto navega a la pagina pokédex.
+				Pantalla pokédex vacía
+	TIEMPO ESTIMADO: 5h
+	TIEMPO REAL: 4h
 
-	Crear inserts de prueba en DataBase
-	Crear DBConnect.
-	DAL pokemon.
-	DAL Usuario.
-	
-	Pantalla principal
-		TextArea(nombre) + 2 botones :
-			Cargar Partida --> select tabla de usuario si  (nombre == nombre introducido)
-			Nueva Partida --> select tabla de usuario (si existe alert ya existe). Si no insert nombre en tabla usuario.
-		En ambos casos si es correcto navega a la pagina pookedotchi.
-				
-TIEMPO ESTIMADO: 5h
-TIEMPO REAL:
+
+NOCHE (20/04/2021)
+		Recuperar ID y guardarla en Session.
+		Recuperar pokemons por ID del usuario. 
+		Pantalla pokédex mostrando los pokémons del usuario. 
+	TIEMPO ESTIMADO:  
+	TIEMPO REAL : + 2.45h
+
+
+
+
+IDEA FUNCIONAMIENTO:
+	Cargar partida /crear partida.
+		Para añadir pokemos: textArea + boton capturar (random 0/1 ) 50% probabilidades de capturarlo.
+		
 
 mandar a  recolectar. random 0-10 (baja felicidad)
 						random comer 0 -2 puntos felicidad

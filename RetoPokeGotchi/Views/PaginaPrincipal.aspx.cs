@@ -12,22 +12,23 @@ namespace RetoPokeGotchi.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void butCargarPartida_Click(object sender, EventArgs e)
         {
-            
             DALPokegotchi daLPokegotchi = new DALPokegotchi();
             try
             {
                 if (daLPokegotchi.SelectUsuario(textNombre.Text) != null)
                 {
-                    Response.Redirect("PaginaPokedex.aspx");
+                    Session["userId"] = daLPokegotchi.SelectIdUsuario(textNombre.Text);
+                    Response.Redirect("PaginaPokedex.aspx", false);
+                    Context.ApplicationInstance.CompleteRequest();
                 }
                 else
                 {
-                    textNombre.Text = Convert.ToString("¿Seguro?");
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('No existe ninguna partida con ese nombre.')", true);
                 }
             }
             catch(Exception error) { textNombre.Text = error.Message ; }
@@ -40,13 +41,14 @@ namespace RetoPokeGotchi.Views
             if(daLPokegotchi.SelectUsuario(textNombre.Text) == null && textNombre.Text != "")
             {
                 daLPokegotchi.InsertarUsuario(textNombre.Text);
-                Response.Redirect("PaginaPokedex.aspx");
+                Session["userId"] = daLPokegotchi.SelectIdUsuario(textNombre.Text);
+                Response.Redirect("PaginaPokedex.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
             }
             else
             {
-                textNombre.Text = Convert.ToString("Prueba otro nombre");
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Ya existe una partida con ese nombre. Prueba a introducir uno diferente')", true);
             }
-
         }
     }
 }
