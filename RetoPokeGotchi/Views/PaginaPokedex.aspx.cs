@@ -19,7 +19,7 @@ namespace RetoPokeGotchi.Views
             List<Pokemon> listaPokemons = daLPokegotchi.MostrarPokemons(Convert.ToInt32(Session["userId"]));
             foreach (Pokemon pokemon in listaPokemons)
             {
-                listPokemons.Items.Add(pokemon.NombrePokemon +"es de tipo " + pokemon.Tipo + " y su estado de salud es" );
+                listPokemons.Items.Add(pokemon.NombrePokemon +" es de tipo " + pokemon.Tipo + ". su estado de salud es: " + pokemon.Salud );
             }
 
             //Aquí hacía la lista de id's en vez de pokemons.
