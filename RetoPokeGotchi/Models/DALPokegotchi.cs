@@ -156,7 +156,12 @@ namespace RetoPokeGotchi.Models
             List<Pokemon> listaPokemons = new List<Pokemon>();
             try
             {
-                string sql = @" select p.NombrePokemon,  p.Tipo, l.salud from Pokemon p INNER JOIN Pokegotchi as l  on p.id = l.idPokemon and idUsuario = @pIdUsuario";
+               // @" select p.NombrePokemon,  p.Tipo, l.salud from Pokemon p INNER JOIN Pokegotchi as l  on p.id = l.idPokemon and idUsuario = @pIdUsuario";
+                string sql = @"select p.NombrePokemon,  p.Tipo, s.estado , l.salud from Pokemon p
+                                        INNER JOIN Pokegotchi as l
+                                        on p.id = l.idPokemon and idUsuario =  @pIdUsuario
+                                        INNER JOIN Salud as s
+                                        on s.id = l.salud";
                 SqlCommand cmd = new SqlCommand(sql, conexion.Conexion);
                 SqlParameter pIdUsuario = new SqlParameter("@pIdUsuario", idUsuario);
                 cmd.Parameters.Add(pIdUsuario);
@@ -168,6 +173,7 @@ namespace RetoPokeGotchi.Models
                     pokemon.NombrePokemon = (string)dr["NombrePokemon"];
                     pokemon.Tipo = (string)dr["Tipo"];
                     pokemon.Salud = (int)dr["salud"];
+                    pokemon.Estado = (string)dr["estado"];
                     listaPokemons.Add(pokemon);
                 }
                 dr.Close();

@@ -15,13 +15,13 @@ namespace RetoPokeGotchi.Views
             Convert.ToInt32(Session["userId"]);
             DALPokegotchi daLPokegotchi = new DALPokegotchi();
 
-
             List<Pokemon> listaPokemons = daLPokegotchi.MostrarPokemons(Convert.ToInt32(Session["userId"]));
+            listPokemons.Items.Clear();
             foreach (Pokemon pokemon in listaPokemons)
             {
-                listPokemons.Items.Add(pokemon.NombrePokemon +" es de tipo " + pokemon.Tipo + ". su estado de salud es: " + pokemon.Salud );
+                
+                listPokemons.Items.Add(pokemon.NombrePokemon +" es de tipo " + pokemon.Tipo + ". su estado de salud es: " + pokemon.Estado );
             }
-
             //Aquí hacía la lista de id's en vez de pokemons.
             //List<int> idPokemons = daLPokegotchi.SelectIdPokemons(Convert.ToInt32(Session["userId"]));
             //foreach (int id in idPokemons)
@@ -47,7 +47,14 @@ namespace RetoPokeGotchi.Views
                     }
                     Pokemon pokemonUsuario = dALPokegotchi.ObtenerIdPokemon(textPedirPokemon.Text);
                     dALPokegotchi.InsertarEnPokegotchi(pokemonUsuario, Convert.ToInt32(Session["userId"]));
-                    
+
+                    List<Pokemon> listaPokemons = dALPokegotchi.MostrarPokemons(Convert.ToInt32(Session["userId"]));
+                    listPokemons.Items.Clear();
+                    foreach (Pokemon p in listaPokemons)
+                    {
+
+                        listPokemons.Items.Add(p.NombrePokemon + " es de tipo " + p.Tipo + ". su estado de salud es: " + p.Estado);
+                    }
 
                 }
                 else
