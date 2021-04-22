@@ -10,11 +10,13 @@ namespace RetoPokeGotchi.Models
         int id;
         string nombrePokemon;
         string tipo;
-        string salud ;
+        int salud ;
+        int felicidad;
 
         public int Id { get => id; set => id = value; }
         public string NombrePokemon { get => nombrePokemon; set => nombrePokemon = value; }
         public string Tipo { get => tipo; set => tipo = value; }
-        public string Salud { get => salud; set => salud = value; }
+        public int Salud { get => salud; set => salud = value; }
+        public int Felicidad { get => felicidad; set => felicidad = value; }
     }
 }

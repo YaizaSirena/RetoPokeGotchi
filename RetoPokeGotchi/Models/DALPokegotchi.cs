@@ -167,7 +167,7 @@ namespace RetoPokeGotchi.Models
                     Pokemon pokemon = new Pokemon();
                     pokemon.NombrePokemon = (string)dr["NombrePokemon"];
                     pokemon.Tipo = (string)dr["Tipo"];
-                    pokemon.Salud = (string)dr["salud"];
+                    pokemon.Salud = (int)dr["salud"];
                     listaPokemons.Add(pokemon);
                 }
                 dr.Close();
@@ -178,16 +178,20 @@ namespace RetoPokeGotchi.Models
 
         public void InsertarEnPokegotchi(Pokemon pokemonSolicitado, int idUsuario)
         {
+            Random random = new Random();
+            int salud = random.Next(1, 3);
+            int felicidad = random.Next(1, 11);
             Pokemon pokemon = new Pokemon();
             pokemon = pokemonSolicitado;
             try
             {
-                string sql = "insert into Pokegotchi (idUsuario, idPokemon, salud) values (@pidUsuario, @pidPokemon, @pSalud)";
+                string sql = "insert into Pokegotchi (idUsuario, idPokemon, salud, Felicidad) values (@pidUsuario, @pidPokemon, @pSalud, @pFelicidad)";
                 SqlCommand cmd = new SqlCommand(sql, conexion.Conexion);
 
                 cmd.Parameters.Add(CrearParametro("@pidUsuario", System.Data.SqlDbType.Int, 0, idUsuario));
                 cmd.Parameters.Add(CrearParametro("@pidPokemon", System.Data.SqlDbType.Int, 0, pokemon.Id));
-                cmd.Parameters.Add(CrearParametro("@pSalud", System.Data.SqlDbType.VarChar, 50, "Sano"));
+                cmd.Parameters.Add(CrearParametro("@pSalud", System.Data.SqlDbType.Int, 0, salud));
+                cmd.Parameters.Add(CrearParametro("@pFelicidad", System.Data.SqlDbType.Int, 0, felicidad));
 
                 cmd.ExecuteNonQuery();
             }
