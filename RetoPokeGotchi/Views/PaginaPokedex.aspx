@@ -47,6 +47,8 @@
 					<div class="row">
 						<div class="col-md-5 offset-md-4"  >
                             <asp:ListBox ID="listPokemons" runat="server" Width="496px"></asp:ListBox>
+                            <asp:Button ID="butRecolectar" runat="server" Text="Recolectar" />
+                            <asp:Button ID="butJugar" runat="server" Text="Jugar" />
 						</div>
 					</div>
 				</div>
