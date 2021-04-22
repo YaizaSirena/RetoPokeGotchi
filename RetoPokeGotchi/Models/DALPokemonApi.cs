@@ -11,18 +11,20 @@ namespace RetoPokeGotchi.Models
     {
         public async Task<PokemonApi> recuperarPokemonAPI(string nombrePokemon)
         {
-            PokemonApi pokemonApi = new PokemonApi();
-            PokemonSpecies pokemonSpecie = await DataFetcher.GetNamedApiObject<PokemonSpecies>(nombrePokemon.ToLower());
-            if(pokemonSpecie != null)
+            try
             {
-               //await DataFetcher.GetNamedApiObject<PokeAPI.Pokemon>("25");
-                //pokemonApi.Id = pokemonSpecie.ID;
-                pokemonApi.Nombre = pokemonSpecie.Name;
+                PokemonApi pokemonApi = new PokemonApi();
+                PokemonSpecies pokemonSpecie = await DataFetcher.GetNamedApiObject<PokemonSpecies>(nombrePokemon.ToLower());
+                if (pokemonSpecie != null)
+                {
+                    //await DataFetcher.GetNamedApiObject<PokeAPI.Pokemon>("25");
+                    //pokemonApi.Id = pokemonSpecie.ID;
+                    pokemonApi.Nombre = pokemonSpecie.Name;
+                    return pokemonApi;
+                }
             }
-            return pokemonApi;
+            catch (Exception error) { }
+            return null;
         }
-
-
-
     }
 }

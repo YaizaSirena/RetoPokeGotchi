@@ -33,12 +33,23 @@ namespace RetoPokeGotchi.Views
         {
             try
             {
-                DALPokegotchi dALPokegotchi = new DALPokegotchi();
-                dALPokegotchi.ComprobarPokemon(textPedirPokemon.Text);
-
-                //DALPokemonApi dALPokemonApi = new DALPokemonApi();
-                //PokemonApi pokemon = await dALPokemonApi.recuperarPokemonAPI(textPedirPokemon.Text);
-                //listPokemons.Items.Add(pokemon.Nombre);
+                DALPokemonApi dALPokemonApi = new DALPokemonApi();
+                PokemonApi pokemon = await dALPokemonApi.recuperarPokemonAPI(textPedirPokemon.Text);
+                if (pokemon !=null)
+                {
+                    listPokemons.Items.Add(pokemon.Nombre);
+                    DALPokegotchi dALPokegotchi = new DALPokegotchi();
+                    if(!dALPokegotchi.ComprobarPokemonEnTabla(textPedirPokemon.Text))
+                    {
+                        dALPokegotchi.InsertarPokemon(textPedirPokemon.Text);
+                        Pokemon pokemonUsuario = dALPokegotchi.ObtenerIdPokemon(textPedirPokemon.Text);
+                        dALPokegotchi.InsertarEnPokegotchi(pokemonUsuario, Convert.ToInt32(Session["userId"]));
+                    }
+                }
+                else
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('El Pokémon introducido no existe, prueba con otro nombre')", true);
+                }
             }
             catch (Exception error) { }
 

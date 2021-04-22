@@ -16,7 +16,6 @@ namespace RetoPokeGotchi.Views
         {
             
         }
-
        
         protected async void butCargarPartida_Click(object sender, EventArgs e)
         {
@@ -25,14 +24,11 @@ namespace RetoPokeGotchi.Views
 
             //PokemonApi pokemon = await dALPokemonApi.recuperarPokemonAPI("pikachu");
 
-
             try
             {
                 if (daLPokegotchi.SelectUsuario(textNombre.Text) != null)
                 {
-                    Session["userId"] = daLPokegotchi.
-                        
-                        SelectIdUsuario(textNombre.Text);
+                    Session["userId"] = daLPokegotchi.ObtenerIdUsuario(textNombre.Text);
                     Response.Redirect("PaginaPokedex.aspx", false);
                     Context.ApplicationInstance.CompleteRequest();
                 }
@@ -51,7 +47,7 @@ namespace RetoPokeGotchi.Views
             if(daLPokegotchi.SelectUsuario(textNombre.Text) == null && textNombre.Text != "")
             {
                 daLPokegotchi.InsertarUsuario(textNombre.Text);
-                Session["userId"] = daLPokegotchi.SelectIdUsuario(textNombre.Text);
+                Session["userId"] = daLPokegotchi.ObtenerIdUsuario(textNombre.Text);
                 Response.Redirect("PaginaPokedex.aspx", false);
                 Context.ApplicationInstance.CompleteRequest();
             }

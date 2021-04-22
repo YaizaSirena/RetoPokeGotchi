@@ -33,7 +33,6 @@ namespace RetoPokeGotchi.Models
                 dr.Close();
             }
             catch (Exception error) { }
-            
             return null;
         }
         public void InsertarUsuario(String usuario)
@@ -49,7 +48,7 @@ namespace RetoPokeGotchi.Models
             catch (Exception error) { }
         }
 
-        public bool ComprobarPokemon(string pokemonSolicitado)
+        public bool ComprobarPokemonEnTabla(string pokemonSolicitado)
         {
             string sql = "select * from Pokemon where NombrePokemon like @pNombrePokemon";
             SqlCommand cmd = new SqlCommand(sql, conexion.Conexion);
@@ -64,11 +63,21 @@ namespace RetoPokeGotchi.Models
             }
             dr.Close();
             return false;
-
         }
 
-        public void InsertarPokémon(string pokemon)
+        public void InsertarPokemon(string pokemonSolicitado)
         {
+            try
+            {
+                DALPokemonApi pokemon = new DALPokemonApi();
+                string sql = "insert into Pokemon(NombrePokemon, Tipo) values(@pNombrePokemon, @pTipo)";
+                SqlCommand cmd = new SqlCommand(sql, conexion.Conexion);
+
+                cmd.Parameters.Add(CrearParametro("@pNombrePokemon", System.Data.SqlDbType.VarChar, 50, Convert.ToString(pokemonSolicitado)));
+                cmd.Parameters.Add(CrearParametro("@pTipo", System.Data.SqlDbType.VarChar, 50, "Estandar"));
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception error) { }
 
         }
         public SqlParameter CrearParametro(string pName, System.Data.SqlDbType type, int size, object value)
@@ -77,7 +86,7 @@ namespace RetoPokeGotchi.Models
             param.Value = value;
             return param;
         }
-        public int SelectIdUsuario(string nombreUsuario)
+        public int ObtenerIdUsuario(string nombreUsuario)
         {
             int idUsuario = 0;
             try
@@ -97,7 +106,30 @@ namespace RetoPokeGotchi.Models
             catch (Exception error) { }
             return idUsuario;
         }
-        public List<int> SelectIdPokemons(int idUsuario)
+
+        public Pokemon ObtenerIdPokemon(string pokemonSolicitado)
+        {
+            try
+            {
+                string sql = "select id from Pokemon where NombrePokemon = @pNombrePokemon";
+                SqlCommand cmd = new SqlCommand(sql, conexion.Conexion);
+                SqlParameter pNombrePokemon = new SqlParameter("pNombrePokemon", pokemonSolicitado);
+                cmd.Parameters.Add(pNombrePokemon);
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                Pokemon pokemon = new Pokemon();
+                while (dr.Read())
+                {
+                    pokemon.Id = (int)dr["id"];
+                    dr.Close();
+                    return pokemon;
+                }
+                dr.Close();
+            }
+            catch (Exception error) { }
+            return null;
+        }
+        public List<int> ObtenerListaIdPokemon(int idUsuario)
         {
             List<int> listaIdPokegotchi = new List<int>();
             List<Pokemon> listaIdPokemons = new List<Pokemon>();
@@ -143,10 +175,21 @@ namespace RetoPokeGotchi.Models
             return listaPokemons;
         }
 
+        public void InsertarEnPokegotchi(Pokemon pokemonSolicitado, int idUsuario)
+        {
+            Pokemon pokemon = new Pokemon();
+            pokemon = pokemonSolicitado;
+            try
+            {
+                string sql = "insert into Pokegotchi (idUsuario, idPokemon) values (@pidUsuario, @pidPokemon)";
+                SqlCommand cmd = new SqlCommand(sql, conexion.Conexion);
 
-
-
-
+                cmd.Parameters.Add(CrearParametro("@pidUsuario", System.Data.SqlDbType.Int, 0, idUsuario));
+                cmd.Parameters.Add(CrearParametro("@pidPokemon", System.Data.SqlDbType.VarChar, 50, pokemon.Id));
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception error) { }
+        }
 
     }
 }
