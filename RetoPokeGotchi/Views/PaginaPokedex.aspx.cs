@@ -21,7 +21,7 @@ namespace RetoPokeGotchi.Views
                 listPokemons.Items.Add(pokemon.NombrePokemon);
             }
 
-
+            //Aquí hacía la lista de id's en vez de pokemons.
             //List<int> idPokemons = daLPokegotchi.SelectIdPokemons(Convert.ToInt32(Session["userId"]));
             //foreach (int id in idPokemons)
             //{
@@ -33,9 +33,12 @@ namespace RetoPokeGotchi.Views
         {
             try
             {
-                DALPokemonApi dALPokemonApi = new DALPokemonApi();
-                PokemonApi pokemon = await dALPokemonApi.recuperarPokemonAPI(textNuevoPokemon.Text);
-                listPokemons.Items.Add(pokemon.Nombre);
+                DALPokegotchi dALPokegotchi = new DALPokegotchi();
+                dALPokegotchi.ComprobarPokemon(textPedirPokemon.Text);
+
+                //DALPokemonApi dALPokemonApi = new DALPokemonApi();
+                //PokemonApi pokemon = await dALPokemonApi.recuperarPokemonAPI(textPedirPokemon.Text);
+                //listPokemons.Items.Add(pokemon.Nombre);
             }
             catch (Exception error) { }
 

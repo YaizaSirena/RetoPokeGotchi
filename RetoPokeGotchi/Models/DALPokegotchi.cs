@@ -48,6 +48,29 @@ namespace RetoPokeGotchi.Models
             }
             catch (Exception error) { }
         }
+
+        public bool ComprobarPokemon(string pokemonSolicitado)
+        {
+            string sql = "select * from Pokemon where NombrePokemon like @pNombrePokemon";
+            SqlCommand cmd = new SqlCommand(sql, conexion.Conexion);
+            SqlParameter pNombrePokemon = new SqlParameter("@pNombrePokemon", pokemonSolicitado);
+            cmd.Parameters.Add(pNombrePokemon);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            while(dr.Read())
+            {
+                dr.Close();
+                return true;
+            }
+            dr.Close();
+            return false;
+
+        }
+
+        public void InsertarPokémon(string pokemon)
+        {
+
+        }
         public SqlParameter CrearParametro(string pName, System.Data.SqlDbType type, int size, object value)
         {
             SqlParameter param = new SqlParameter(pName, type, size);
@@ -72,7 +95,6 @@ namespace RetoPokeGotchi.Models
                 dr.Close();
             }
             catch (Exception error) { }
-            
             return idUsuario;
         }
         public List<int> SelectIdPokemons(int idUsuario)
@@ -100,11 +122,9 @@ namespace RetoPokeGotchi.Models
         public List<Pokemon> MostrarPokemons(int idUsuario)
         {
             List<Pokemon> listaPokemons = new List<Pokemon>();
-
             try
             {
-                string sql = @" select p.NombrePokemon,  p.Tipo  from Pokemon p INNER JOIN Pokegotchi as l
-                                 on p.id = l.idPokemon and idUsuario = @pIdUsuario";
+                string sql = @" select p.NombrePokemon,  p.Tipo  from Pokemon p INNER JOIN Pokegotchi as l  on p.id = l.idPokemon and idUsuario = @pIdUsuario";
                 SqlCommand cmd = new SqlCommand(sql, conexion.Conexion);
                 SqlParameter pIdUsuario = new SqlParameter("@pIdUsuario", idUsuario);
                 cmd.Parameters.Add(pIdUsuario);
@@ -118,7 +138,6 @@ namespace RetoPokeGotchi.Models
                     listaPokemons.Add(pokemon);
                 }
                 dr.Close();
-
             }
             catch (Exception error) { }
             return listaPokemons;
