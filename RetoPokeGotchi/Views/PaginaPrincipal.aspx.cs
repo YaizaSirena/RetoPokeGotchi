@@ -23,7 +23,7 @@ namespace RetoPokeGotchi.Views
             DALPokegotchi daLPokegotchi = new DALPokegotchi();
             DALPokemonApi dALPokemonApi = new DALPokemonApi();
 
-            PokemonApi pokemon = await dALPokemonApi.recuperarPokemonAPI("pikachu");
+            //PokemonApi pokemon = await dALPokemonApi.recuperarPokemonAPI("pikachu");
 
 
             try

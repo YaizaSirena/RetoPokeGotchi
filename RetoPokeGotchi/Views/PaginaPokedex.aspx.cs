@@ -28,5 +28,17 @@ namespace RetoPokeGotchi.Views
             //    listPokemons.Items.Add(Convert.ToString(id));
             //}
         }
+
+        protected async void butCapturar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DALPokemonApi dALPokemonApi = new DALPokemonApi();
+                PokemonApi pokemon = await dALPokemonApi.recuperarPokemonAPI(textNuevoPokemon.Text);
+                listPokemons.Items.Add(pokemon.Nombre);
+            }
+            catch (Exception error) { }
+
+        }
     }
 }

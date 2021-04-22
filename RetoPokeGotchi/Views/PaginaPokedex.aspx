@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Pokedex.aspx.cs" Inherits="RetoPokeGotchi.Views.WebForm1" %>
+﻿<%@ Page Async="true" Language="C#" AutoEventWireup="true" CodeBehind="Pokedex.aspx.cs" Inherits="RetoPokeGotchi.Views.WebForm1" %>
 
 <!DOCTYPE html>
 
@@ -34,7 +34,7 @@
 					<div class="row">
 						<div class="col-md-6 offset-md-4" >
 							<asp:TextBox ID="textNuevoPokemon" runat="server"></asp:TextBox>
-                            <asp:Button ID="butCapturarPokemon" runat="server" Text="Capturar" />
+                            <asp:Button ID="butCapturar" runat="server" Text="Button" OnClick="butCapturar_Click"/>
 						</div>
 					</div><br />
 	
