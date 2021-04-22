@@ -185,7 +185,7 @@ namespace RetoPokeGotchi.Models
                 SqlCommand cmd = new SqlCommand(sql, conexion.Conexion);
 
                 cmd.Parameters.Add(CrearParametro("@pidUsuario", System.Data.SqlDbType.Int, 0, idUsuario));
-                cmd.Parameters.Add(CrearParametro("@pidPokemon", System.Data.SqlDbType.VarChar, 50, pokemon.Id));
+                cmd.Parameters.Add(CrearParametro("@pidPokemon", System.Data.SqlDbType.Int, 0, pokemon.Id));
                 cmd.ExecuteNonQuery();
             }
             catch (Exception error) { }
