@@ -33,8 +33,8 @@
 			
 					<div class="row">
 						<div class="col-md-6 offset-md-4" >
-							<asp:TextBox ID="butPokemon" runat="server"></asp:TextBox>
-                            <asp:Button ID="butCapturar" runat="server" Text="Capturar" />
+							<asp:TextBox ID="textNuevoPokemon" runat="server"></asp:TextBox>
+                            <asp:Button ID="butCapturarPokemon" runat="server" Text="Capturar" />
 						</div>
 					</div><br />
 	

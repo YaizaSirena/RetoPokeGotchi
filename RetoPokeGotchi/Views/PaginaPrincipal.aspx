@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PaginaPrincipal.aspx.cs" Inherits="RetoPokeGotchi.Views.PaginaPrincipal" %>
+﻿<%@ Page Async="true" Language="C#" AutoEventWireup="true" CodeBehind="PaginaPrincipal.aspx.cs" Inherits="RetoPokeGotchi.Views.PaginaPrincipal" %>
 
 <!DOCTYPE html>
 

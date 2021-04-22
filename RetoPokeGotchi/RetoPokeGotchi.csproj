@@ -45,6 +45,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PokeApi.NET">
+      <HintPath>..\..\..\RetoPoketGotchiBueno\Pokeapi\PokeApi.NET-v2\PokeApi.NET\bin\Debug\net45\PokeApi.NET.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -203,9 +206,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DALPokegotchi.cs" />
+    <Compile Include="Models\DALPokemonApi.cs" />
     <Compile Include="Models\DBConnect.cs" />
     <Compile Include="Models\Pokegotchi.cs" />
     <Compile Include="Models\Pokemon.cs" />
+    <Compile Include="Models\PokemonApi.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">

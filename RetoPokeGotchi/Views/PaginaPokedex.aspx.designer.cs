@@ -42,22 +42,22 @@ namespace RetoPokeGotchi.Views
         protected global::System.Web.UI.WebControls.Label labelPeticion;
 
         /// <summary>
-        /// Control butPokemon.
+        /// Control textNuevoPokemon.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox butPokemon;
+        protected global::System.Web.UI.WebControls.TextBox textNuevoPokemon;
 
         /// <summary>
-        /// Control butCapturar.
+        /// Control butCapturarPokemon.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button butCapturar;
+        protected global::System.Web.UI.WebControls.Button butCapturarPokemon;
 
         /// <summary>
         /// Control labelPokedex.
