@@ -128,11 +128,13 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="JPG\21778-pikachu.jpg" />
     <Content Include="JPG\297094.jpg" />
     <Content Include="JPG\304333.jpg" />
     <Content Include="JPG\305896 %281%29.jpg" />
     <Content Include="JPG\305896.jpg" />
     <Content Include="JPG\312091.png" />
+    <Content Include="JPG\33-3t.jpg" />
     <Content Include="JPG\43499.jpg" />
     <Content Include="JPG\462552.jpg" />
     <Content Include="JPG\481904.jpg" />

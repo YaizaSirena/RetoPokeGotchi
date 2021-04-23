@@ -29,7 +29,7 @@ namespace RetoPokeGotchi.Views
 
         protected string construirTextoPokemon(Pokegotchi pokegotchi)
         {
-            return pokegotchi.Pokemon.NombrePokemon + " es de tipo " + pokegotchi.Pokemon.Tipo + ". su estado de salud es: " + obtenerSaludString(pokegotchi.Salud) + " su felicidad es " + pokegotchi.Felicidad;
+            return pokegotchi.Pokemon.NombrePokemon.ToUpper() + " | Es de tipo  " + pokegotchi.Pokemon.Tipo.ToUpper() + " | Su estado de salud es  " + obtenerSaludString(pokegotchi.Salud) + " | Nivel de felicidad : " + pokegotchi.Felicidad;
         }
 
         protected void recargarListPokegotchiPorIdUsuario(int idUsuario)
