@@ -35,7 +35,7 @@
 						<div class="col-md-6 offset-md-4" >
 							<asp:TextBox ID="textPedirPokemon" runat="server"></asp:TextBox>
                             <asp:Button ID="butCapturar" runat="server" Text="Capturar" OnClick="butCapturar_Click"/>
-						</div>
+                            						</div>
 					</div><br />
 	
 				   <div class="row">
@@ -49,11 +49,14 @@
 							<asp:ScriptManager ID="ScriptManager1" runat="server" />
 							<asp:UpdatePanel ID="UpdatePanel1" runat="server">
 							<ContentTemplate>
-								<asp:ListBox ID="listPokemons"  runat="server" Width="623px" Rows="10"></asp:ListBox>
+								<asp:ListBox ID="listPokemons"  runat="server" Width="555px" Rows="10"></asp:ListBox>
 								<asp:Button ID="butRecolectar" runat="server" Text="Recolectar" OnClick="butRecolectar_Click" />
 								<asp:Button ID="butJugar" runat="server" Text="Jugar" OnClick="butJugar_Click" />
 							</ContentTemplate>
 							</asp:UpdatePanel>
+						</div>
+						<div class="col-md-2 offset-md-1">
+							<asp:Image ID="Image1" runat="server" Height="151px" Width="246px" />
 						</div>
 					</div>
 				</div>
