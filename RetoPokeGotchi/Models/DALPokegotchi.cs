@@ -65,7 +65,7 @@ namespace RetoPokeGotchi.Models
             return false;
         }
 
-        public void InsertarPokemon(string pokemonSolicitado)
+        public void InsertarPokemon(PokemonApi pokemonApi)
         {
             try
             {
@@ -73,8 +73,8 @@ namespace RetoPokeGotchi.Models
                 string sql = "insert into Pokemon(NombrePokemon, Tipo) values(@pNombrePokemon, @pTipo)";
                 SqlCommand cmd = new SqlCommand(sql, conexion.Conexion);
 
-                cmd.Parameters.Add(CrearParametro("@pNombrePokemon", System.Data.SqlDbType.VarChar, 50, Convert.ToString(pokemonSolicitado)));
-                cmd.Parameters.Add(CrearParametro("@pTipo", System.Data.SqlDbType.VarChar, 50, "Estandar"));
+                cmd.Parameters.Add(CrearParametro("@pNombrePokemon", System.Data.SqlDbType.VarChar, 50, Convert.ToString(pokemonApi.Nombre)));
+                cmd.Parameters.Add(CrearParametro("@pTipo", System.Data.SqlDbType.VarChar, 50, Convert.ToString(pokemonApi.Tipo)));
                 cmd.ExecuteNonQuery();
             }
             catch (Exception error) { }
@@ -151,17 +151,14 @@ namespace RetoPokeGotchi.Models
             return listaIdPokegotchi;
         }
 
-        public List<Pokemon> MostrarPokemons(int idUsuario)
+        public List<Pokegotchi> RecuperaPokegotchisPorIdUsuario(int idUsuario)
         {
-            List<Pokemon> listaPokemons = new List<Pokemon>();
+            List<Pokegotchi> listaPokegotchi = new List<Pokegotchi>();
             try
             {
-               // @" select p.NombrePokemon,  p.Tipo, l.salud from Pokemon p INNER JOIN Pokegotchi as l  on p.id = l.idPokemon and idUsuario = @pIdUsuario";
-                string sql = @"select p.NombrePokemon,  p.Tipo, s.estado , l.salud from Pokemon p
+               string sql = @"select  l.felicidad, l.idPokemon, l.idUsuario, p.NombrePokemon, l.id, p.Tipo , l.salud from Pokemon p
                                         INNER JOIN Pokegotchi as l
-                                        on p.id = l.idPokemon and idUsuario =  @pIdUsuario
-                                        INNER JOIN Salud as s
-                                        on s.id = l.salud";
+                                        on p.id = l.idPokemon and idUsuario =  @pIdUsuario";
                 SqlCommand cmd = new SqlCommand(sql, conexion.Conexion);
                 SqlParameter pIdUsuario = new SqlParameter("@pIdUsuario", idUsuario);
                 cmd.Parameters.Add(pIdUsuario);
@@ -169,17 +166,65 @@ namespace RetoPokeGotchi.Models
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
+                    Pokegotchi pokegotchi = new Pokegotchi();
+                    pokegotchi.IdUsuario = (int)dr["idUsuario"];
+                    pokegotchi.Salud = (int)dr["salud"];
+                    pokegotchi.IdPokemon = (int)dr["idPokemon"];
+                    pokegotchi.Felicidad = (int)dr["felicidad"];
+                    pokegotchi.Id = (int)dr["id"];
+                    pokegotchi.Salud = (int)dr["salud"];
+
+
                     Pokemon pokemon = new Pokemon();
                     pokemon.NombrePokemon = (string)dr["NombrePokemon"];
                     pokemon.Tipo = (string)dr["Tipo"];
-                    pokemon.Salud = (int)dr["salud"];
-                    pokemon.Estado = (string)dr["estado"];
-                    listaPokemons.Add(pokemon);
+                    pokemon.IdPokegotchi = (int)dr["id"];
+
+                    pokegotchi.Pokemon = pokemon;
+
+                    listaPokegotchi.Add(pokegotchi);
                 }
                 dr.Close();
             }
             catch (Exception error) { }
-            return listaPokemons;
+            return listaPokegotchi;
+        }
+
+        public Pokegotchi RecuperaPokegotchiPorId(int idPokegotchi)
+        {
+            Pokegotchi pokegotchi = new Pokegotchi();
+            try
+            {
+                string sql = @"select l.felicidad, l.idPokemon, l.idUsuario, p.NombrePokemon, l.id, p.Tipo , l.salud from Pokemon p
+                                        INNER JOIN Pokegotchi as l
+                                        on p.id = l.idPokemon and l.id =  @pIdPokegotchi";
+                SqlCommand cmd = new SqlCommand(sql, conexion.Conexion);
+                SqlParameter pIdPokegotchi = new SqlParameter("@pIdPokegotchi", idPokegotchi);
+                cmd.Parameters.Add(pIdPokegotchi);
+
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    pokegotchi.IdUsuario = (int)dr["idUsuario"];
+                    pokegotchi.Salud = (int)dr["salud"];
+                    pokegotchi.IdPokemon = (int)dr["idPokemon"];
+                    pokegotchi.Felicidad = (int)dr["felicidad"];
+                    pokegotchi.Id = (int)dr["id"];
+                    pokegotchi.Salud = (int)dr["salud"];
+
+
+                    Pokemon pokemon = new Pokemon();
+                    pokemon.NombrePokemon = (string)dr["NombrePokemon"];
+                    pokemon.Tipo = (string)dr["Tipo"];
+                    pokemon.IdPokegotchi = (int)dr["id"];
+
+                    pokegotchi.Pokemon = pokemon;
+
+                }
+                dr.Close();
+            }
+            catch (Exception error) { }
+            return pokegotchi;
         }
 
         public void InsertarEnPokegotchi(Pokemon pokemonSolicitado, int idUsuario)
@@ -203,8 +248,108 @@ namespace RetoPokeGotchi.Models
             }
             catch (Exception error) { }
         }
+       public void AumentarFelicidad(int idPoketgotchi)
+        {
+            Pokegotchi pokegotchi = RecuperaPokegotchiPorId(idPoketgotchi);
+            try
+            {
+                string sql = @"UPDATE Pokegotchi
+                            SET felicidad = @pFelicidad
+                            WHERE id = @pId";
+                SqlCommand cmd = new SqlCommand(sql, conexion.Conexion);
+                cmd.Parameters.Add(CrearParametro("@pId", System.Data.SqlDbType.Int, 0, pokegotchi.Id));
+                cmd.Parameters.Add(CrearParametro("@pFelicidad", System.Data.SqlDbType.Int, 0, pokegotchi.Felicidad + new Random().Next(1, 3)));
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception error) { }
 
-       
+        }
+
+
+        public void DisminuirFelicidad(int idPoketgotchi)
+        {
+            
+            Pokegotchi pokegotchi = RecuperaPokegotchiPorId(idPoketgotchi);
+            try
+            {
+                string sql = @"UPDATE Pokegotchi
+                            SET felicidad = @pFelicidad
+                            WHERE id = @pId";
+                SqlCommand cmd = new SqlCommand(sql, conexion.Conexion);
+                cmd.Parameters.Add(CrearParametro("@pId", System.Data.SqlDbType.Int, 0, pokegotchi.Id));
+                cmd.Parameters.Add(CrearParametro("@pFelicidad", System.Data.SqlDbType.Int, 0, pokegotchi.Felicidad - new Random().Next(1, 3)));
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception error) { }
+        }
+
+        public void AumentarSalud(int idPoketgotchi)
+        {
+            Pokegotchi pokegotchi = RecuperaPokegotchiPorId(idPoketgotchi);
+            try
+            {
+                string sql = @"UPDATE Pokegotchi
+                            SET salud = @pSalud
+                            WHERE id = @pId";
+                SqlCommand cmd = new SqlCommand(sql, conexion.Conexion);
+                cmd.Parameters.Add(CrearParametro("@pId", System.Data.SqlDbType.Int, 0, pokegotchi.Id));
+                cmd.Parameters.Add(CrearParametro("@pSalud", System.Data.SqlDbType.Int, 0, pokegotchi.Salud + new Random().Next(1, 3)));
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception error) { }
+
+        }
+
+
+        public void DisminuirSalud(int idPoketgotchi)
+        {
+            Pokegotchi pokegotchi = RecuperaPokegotchiPorId(idPoketgotchi);
+            try
+            {
+                string sql = @"UPDATE Pokegotchi
+                            SET salud = @pSalud
+                            WHERE id = @pId";
+                SqlCommand cmd = new SqlCommand(sql, conexion.Conexion);
+                cmd.Parameters.Add(CrearParametro("@pId", System.Data.SqlDbType.Int, 0, pokegotchi.Id));
+                cmd.Parameters.Add(CrearParametro("@pSalud", System.Data.SqlDbType.Int, 0, pokegotchi.Salud - new Random().Next(1, 3)));
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception error) { }
+        }
+
+        public int SelectMediaFelicidadPokegotchiPorIdUsuario(int idUsuario)
+        {
+            int felicidad = 0;
+            try
+            {
+                string sql = @"select avg(Felicidad) felicidad from Pokegotchi where idUsuario =  @pidUsuario";
+                SqlCommand cmd = new SqlCommand(sql, conexion.Conexion);
+                SqlParameter pIdPokegotchi = new SqlParameter("@pidUsuario", idUsuario);
+                cmd.Parameters.Add(pIdPokegotchi);
+
+                felicidad = (int)cmd.ExecuteScalar();
+            }
+            catch (Exception error) { }
+            return felicidad;
+        }
+
+        public int SelectMediaSaludPokegotchiporIdUsuario(int idUsuario)
+        {
+            int salud =0;
+            try
+            {
+                string sql = @"select avg(salud) from Pokegotchi where idUsuario = @pIdUsuario";
+                SqlCommand cmd = new SqlCommand(sql, conexion.Conexion);
+                SqlParameter pIdPokegotchi = new SqlParameter("@pIdUsuario", idUsuario);
+                cmd.Parameters.Add(pIdPokegotchi);
+
+                salud = (int)cmd.ExecuteScalar();
+               
+            }
+            catch (Exception error) { }
+            return salud;
+        }
+
     }
 }
 

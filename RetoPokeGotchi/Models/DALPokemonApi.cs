@@ -17,9 +17,15 @@ namespace RetoPokeGotchi.Models
                 PokemonSpecies pokemonSpecie = await DataFetcher.GetNamedApiObject<PokemonSpecies>(nombrePokemon.ToLower());
                 if (pokemonSpecie != null)
                 {
-                    //await DataFetcher.GetNamedApiObject<PokeAPI.Pokemon>("25");
-                    //pokemonApi.Id = pokemonSpecie.ID;
+                    pokemonApi.Id = pokemonSpecie.ID;
                     pokemonApi.Nombre = pokemonSpecie.Name;
+
+                    PokeAPI.Pokemon pokemon = await DataFetcher.GetNamedApiObject<PokeAPI.Pokemon>(pokemonSpecie.ID.ToString());
+                    if(pokemon.Types != null)
+                    {
+                        pokemonApi.Tipo = pokemon.Types[0].Type.Name;
+                    }
+
                     return pokemonApi;
                 }
             }

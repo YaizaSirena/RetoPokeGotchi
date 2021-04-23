@@ -46,9 +46,14 @@
 				   <br />
 					<div class="row">
 						<div class="col-md-5 offset-md-4"  >
-                            <asp:ListBox ID="listPokemons" runat="server" Width="496px"></asp:ListBox>
-                            <asp:Button ID="butRecolectar" runat="server" Text="Recolectar" />
-                            <asp:Button ID="butJugar" runat="server" Text="Jugar" />
+							<asp:ScriptManager ID="ScriptManager1" runat="server" />
+							<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+							<ContentTemplate>
+								<asp:ListBox ID="listPokemons"  runat="server" Width="623px" Rows="10"></asp:ListBox>
+								<asp:Button ID="butRecolectar" runat="server" Text="Recolectar" OnClick="butRecolectar_Click" />
+								<asp:Button ID="butJugar" runat="server" Text="Jugar" OnClick="butJugar_Click" />
+							</ContentTemplate>
+							</asp:UpdatePanel>
 						</div>
 					</div>
 				</div>

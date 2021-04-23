@@ -1,6 +1,7 @@
 ﻿using PokeAPI;
 using RetoPokeGotchi.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,18 +18,16 @@ namespace RetoPokeGotchi.Views
             
         }
        
-        protected async void butCargarPartida_Click(object sender, EventArgs e)
+        protected void butCargarPartida_Click(object sender, EventArgs e)
         {
             DALPokegotchi daLPokegotchi = new DALPokegotchi();
-            DALPokemonApi dALPokemonApi = new DALPokemonApi();
-
-            //PokemonApi pokemon = await dALPokemonApi.recuperarPokemonAPI("pikachu");
 
             try
             {
                 if (daLPokegotchi.SelectUsuario(textNombre.Text) != null)
                 {
                     Session["userId"] = daLPokegotchi.ObtenerIdUsuario(textNombre.Text);
+                    Session["listPokemonId"] = new Hashtable();
                     Response.Redirect("PaginaPokedex.aspx", false);
                     Context.ApplicationInstance.CompleteRequest();
                 }
@@ -48,6 +47,7 @@ namespace RetoPokeGotchi.Views
             {
                 daLPokegotchi.InsertarUsuario(textNombre.Text);
                 Session["userId"] = daLPokegotchi.ObtenerIdUsuario(textNombre.Text);
+                Session["listPokemonId"] = new Hashtable();
                 Response.Redirect("PaginaPokedex.aspx", false);
                 Context.ApplicationInstance.CompleteRequest();
             }
