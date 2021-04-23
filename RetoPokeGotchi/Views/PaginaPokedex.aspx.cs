@@ -24,7 +24,7 @@ namespace RetoPokeGotchi.Views
 
         protected string obtenerSaludString(int salud)
         {
-                return salud > 1 ? "Sano" : "Enfermo";
+            return salud > 1 ? "Sano" : "Enfermo";
         }
 
         protected string construirTextoPokemon(Pokegotchi pokegotchi)
@@ -63,7 +63,7 @@ namespace RetoPokeGotchi.Views
                 Session["listPokemonId"] = listPokemonId;
                 listPokemons.DataSource = data;
                 listPokemons.DataBind();
-            }  
+            }
         }
 
         protected async void butCapturar_Click(object sender, EventArgs e)
@@ -84,7 +84,7 @@ namespace RetoPokeGotchi.Views
                         {
                             dALPokegotchi.InsertarPokemon(pokemonApi);
                         }
-                        Pokemon pokemonUsuario = dALPokegotchi.ObtenerIdPokemon(textPedirPokemon.Text);
+                        Pokemon pokemonUsuario = dALPokegotchi.ObtenerIdPokemon(pokemonApi.Nombre);
 
                         dALPokegotchi.InsertarEnPokegotchi(pokemonUsuario, Convert.ToInt32(Session["userId"]));
 
@@ -100,6 +100,22 @@ namespace RetoPokeGotchi.Views
 
         }
 
+
+
+        protected void listPokemons_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listPokemons.SelectedIndex != -1)
+            {
+                Hashtable ht = new Hashtable();
+                ht = (Hashtable)Session["listPokemonId"];
+                DALPokegotchi dALpokegotchi = new DALPokegotchi();
+                Pokegotchi pokegotchiSeleccionado = dALpokegotchi.RecuperaPokegotchiPorId((int)ht[listPokemons.SelectedIndex]);
+                Image1.ImageUrl = "https://pokeres.bastionbot.org/images/pokemon/" + pokegotchiSeleccionado.Pokemon.IdApi + ".png";
+                Image1.DataBind();
+
+            }
+        }
+
         protected void butRecolectar_Click(object sender, EventArgs e)
         {
             if (listPokemons.SelectedIndex == -1)
@@ -108,11 +124,11 @@ namespace RetoPokeGotchi.Views
             }
             else
             {
-                Hashtable ht = new Hashtable();
-                ht = (Hashtable)Session["listPokemonId"];
+                Hashtable hashTableIdPokemons = new Hashtable();
+                hashTableIdPokemons = (Hashtable)Session["listPokemonId"];
                 DALPokegotchi dALpokegotchi = new DALPokegotchi();
-                dALpokegotchi.DisminuirFelicidad((int)ht[listPokemons.SelectedIndex]);
-                dALpokegotchi.DisminuirSalud((int)ht[listPokemons.SelectedIndex]);
+                dALpokegotchi.DisminuirFelicidad((int)hashTableIdPokemons[listPokemons.SelectedIndex]);
+                dALpokegotchi.DisminuirSalud((int)hashTableIdPokemons[listPokemons.SelectedIndex]);
                 recargarListPokegotchiPorIdUsuario(Convert.ToInt32(Session["userId"]));
             }
 
@@ -128,26 +144,26 @@ namespace RetoPokeGotchi.Views
             }
             else
             {
-                Hashtable ht = new Hashtable();
-                ht = (Hashtable)Session["listPokemonId"];
+                Hashtable hashTableIdPokemons = new Hashtable();
+                hashTableIdPokemons = (Hashtable)Session["listPokemonId"];
                 DALPokegotchi dALpokegotchi = new DALPokegotchi();
-                dALpokegotchi.AumentarFelicidad((int)ht[listPokemons.SelectedIndex]);
-                dALpokegotchi.AumentarSalud((int)ht[listPokemons.SelectedIndex]);
+                dALpokegotchi.AumentarFelicidad((int)hashTableIdPokemons[listPokemons.SelectedIndex]);
+                dALpokegotchi.AumentarSalud((int)hashTableIdPokemons[listPokemons.SelectedIndex]);
                 recargarListPokegotchiPorIdUsuario(Convert.ToInt32(Session["userId"]));
 
                 //controlar si hemos ganado
                 int felicidad = dALpokegotchi.SelectMediaFelicidadPokegotchiPorIdUsuario(Convert.ToInt32(Session["userId"]));
                 int salud = dALpokegotchi.SelectMediaSaludPokegotchiporIdUsuario(Convert.ToInt32(Session["userId"]));
 
-                if( felicidad > 10 && salud > 10)
+                if (felicidad > 10 && salud > 10)
                 {
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('¡Feicidades! Acabas de conseguir tu Pokegotchi Legendario')", true);
 
                 }
-
             }
+
         }
 
-
     }
+        
 }

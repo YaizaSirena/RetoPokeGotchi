@@ -19,6 +19,7 @@ namespace RetoPokeGotchi.Models
                 {
                     pokemonApi.Id = pokemonSpecie.ID;
                     pokemonApi.Nombre = pokemonSpecie.Name;
+             
 
                     PokeAPI.Pokemon pokemon = await DataFetcher.GetNamedApiObject<PokeAPI.Pokemon>(pokemonSpecie.ID.ToString());
                     if(pokemon.Types != null)

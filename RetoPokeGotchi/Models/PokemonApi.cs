@@ -16,5 +16,6 @@ namespace RetoPokeGotchi.Models
         public string Tipo { get => tipo; set => tipo = value; }
         public int Id { get => id; set => id = value; }
         public int EvolucionSiguiente { get => evolucionSiguiente; set => evolucionSiguiente = value; }
+
     }
 }

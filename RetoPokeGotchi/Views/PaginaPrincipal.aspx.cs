@@ -41,8 +41,8 @@ namespace RetoPokeGotchi.Views
 
         protected void butNuevaPartida_Click(object sender, EventArgs e)
         {
+
             DALPokegotchi daLPokegotchi = new DALPokegotchi();
-            
             if(daLPokegotchi.SelectUsuario(textNombre.Text) == null && textNombre.Text != "")
             {
                 daLPokegotchi.InsertarUsuario(textNombre.Text);

@@ -1,4 +1,4 @@
-﻿<%@ Page Async="true" Language="C#" AutoEventWireup="true" CodeBehind="Pokedex.aspx.cs" Inherits="RetoPokeGotchi.Views.WebForm1" %>
+﻿<%@ Page Async="true" Language="C#" AutoEventWireup="true" CodeBehind="PaginaPokedex.aspx.cs" Inherits="RetoPokeGotchi.Views.WebForm1" %>
 
 <!DOCTYPE html>
 
@@ -49,14 +49,18 @@
 							<asp:ScriptManager ID="ScriptManager1" runat="server" />
 							<asp:UpdatePanel ID="UpdatePanel1" runat="server">
 							<ContentTemplate>
-								<asp:ListBox ID="listPokemons"  runat="server" Width="555px" Rows="10"></asp:ListBox>
+								<asp:ListBox ID="listPokemons"  runat="server" Width="555px" Rows="10" OnSelectedIndexChanged="listPokemons_SelectedIndexChanged" AutoPostBack="True"></asp:ListBox>
 								<asp:Button ID="butRecolectar" runat="server" Text="Recolectar" OnClick="butRecolectar_Click" />
 								<asp:Button ID="butJugar" runat="server" Text="Jugar" OnClick="butJugar_Click" />
 							</ContentTemplate>
 							</asp:UpdatePanel>
 						</div>
 						<div class="col-md-2 offset-md-1">
-							<asp:Image ID="Image1" runat="server" Height="151px" Width="246px" />
+							<asp:UpdatePanel ID="UpdatePanel2" runat="server">
+								<ContentTemplate>
+									<asp:Image ID="Image1" runat="server" Height="151px" Width="246px" />
+								</ContentTemplate>
+							</asp:UpdatePanel>
 						</div>
 					</div>
 				</div>

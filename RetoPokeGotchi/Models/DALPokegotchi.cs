@@ -70,11 +70,12 @@ namespace RetoPokeGotchi.Models
             try
             {
                 DALPokemonApi pokemon = new DALPokemonApi();
-                string sql = "insert into Pokemon(NombrePokemon, Tipo) values(@pNombrePokemon, @pTipo)";
+                string sql = "insert into Pokemon(NombrePokemon, Tipo, idApi) values(@pNombrePokemon, @pTipo, @pIdApi)";
                 SqlCommand cmd = new SqlCommand(sql, conexion.Conexion);
 
                 cmd.Parameters.Add(CrearParametro("@pNombrePokemon", System.Data.SqlDbType.VarChar, 50, Convert.ToString(pokemonApi.Nombre)));
                 cmd.Parameters.Add(CrearParametro("@pTipo", System.Data.SqlDbType.VarChar, 50, Convert.ToString(pokemonApi.Tipo)));
+                cmd.Parameters.Add(CrearParametro("@pIdApi", System.Data.SqlDbType.VarChar, 50, pokemonApi.Id));
                 cmd.ExecuteNonQuery();
             }
             catch (Exception error) { }
@@ -156,7 +157,7 @@ namespace RetoPokeGotchi.Models
             List<Pokegotchi> listaPokegotchi = new List<Pokegotchi>();
             try
             {
-               string sql = @"select  l.felicidad, l.idPokemon, l.idUsuario, p.NombrePokemon, l.id, p.Tipo , l.salud from Pokemon p
+               string sql = @"select  p.idApi, l.felicidad, l.idPokemon, l.idUsuario, p.NombrePokemon, l.id, p.Tipo , l.salud from Pokemon p
                                         INNER JOIN Pokegotchi as l
                                         on p.id = l.idPokemon and idUsuario =  @pIdUsuario";
                 SqlCommand cmd = new SqlCommand(sql, conexion.Conexion);
@@ -179,6 +180,7 @@ namespace RetoPokeGotchi.Models
                     pokemon.NombrePokemon = (string)dr["NombrePokemon"];
                     pokemon.Tipo = (string)dr["Tipo"];
                     pokemon.IdPokegotchi = (int)dr["id"];
+                    pokemon.IdApi = (int)dr["idApi"];
 
                     pokegotchi.Pokemon = pokemon;
 
@@ -195,7 +197,7 @@ namespace RetoPokeGotchi.Models
             Pokegotchi pokegotchi = new Pokegotchi();
             try
             {
-                string sql = @"select l.felicidad, l.idPokemon, l.idUsuario, p.NombrePokemon, l.id, p.Tipo , l.salud from Pokemon p
+                string sql = @"select p.idApi, l.felicidad, l.idPokemon, l.idUsuario, p.NombrePokemon, l.id, p.Tipo , l.salud from Pokemon p
                                         INNER JOIN Pokegotchi as l
                                         on p.id = l.idPokemon and l.id =  @pIdPokegotchi";
                 SqlCommand cmd = new SqlCommand(sql, conexion.Conexion);
@@ -217,6 +219,7 @@ namespace RetoPokeGotchi.Models
                     pokemon.NombrePokemon = (string)dr["NombrePokemon"];
                     pokemon.Tipo = (string)dr["Tipo"];
                     pokemon.IdPokegotchi = (int)dr["id"];
+                    pokemon.IdApi = (int)dr["idApi"];
 
                     pokegotchi.Pokemon = pokemon;
 
@@ -349,6 +352,8 @@ namespace RetoPokeGotchi.Models
             catch (Exception error) { }
             return salud;
         }
+
+        
 
     }
 }
